@@ -32,6 +32,10 @@ class PointOfInterestController extends AbstractController
             ['headers' => ['Authorization' => 'fsq3LUE8WwKio5dQklMt0eyb9dW/T39x/rwh30gRy0cgsDI=']]
         );
 
+        if (200 != $request->getStatusCode()) {
+            return new JsonResponse([], 418);
+        }
+
         return new JsonResponse($request->toArray());
     }
 }
