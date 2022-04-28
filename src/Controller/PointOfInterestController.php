@@ -26,10 +26,17 @@ class PointOfInterestController extends AbstractController
      */
     public function index(float $longitude, float $latitude, int $radius): JsonResponse
     {
+
         $request = $this->client->request(
             'GET',
             $this->endpoint.'?ll='.$longitude.','.$latitude.'&radius='.$radius,
-            ['headers' => ['Authorization' => 'fsq3LUE8WwKio5dQklMt0eyb9dW/T39x/rwh30gRy0cgsDI=']]
+            [
+                'headers' => [
+                    'Authorization' => 'fsq3LUE8WwKio5dQklMt0eyb9dW/T39x/rwh30gRy0cgsDI='
+                ],
+                'verify_host' => false,
+                'verify_peer' => false,
+            ]
         );
 
         if (200 != $request->getStatusCode()) {
